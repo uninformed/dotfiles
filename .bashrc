@@ -146,4 +146,6 @@ ex ()
 
 export PATH=$PATH:/home/asdf/.gem/ruby/2.7.0/bin:/home/asdf/bin
 
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+
+startvenv() { source "$1/bin/activate"; }
