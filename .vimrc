@@ -4,6 +4,7 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 set showcmd
+set incsearch
 
 " --- vim-plug configuration ---
 call plug#begin('~/.vim/plugs')
