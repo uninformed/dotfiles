@@ -32,19 +32,23 @@ def formatLine(card, fmt, color='${color}', width=48):
 
 @click.command()
 @click.argument('boardid')
+@click.argument('keyfile', type=click.File('r'))
 @click.argument('linefmt', default='{name} [{listname}] due {due_date}')
 #@click.argument('header')
 @click.option('--start', '-s', default=-12, help='range start offset (months from now)', type=int)
 @click.option('--end', '-e', default=1, help='range end offset (months from now)', type=int)
 @click.option('--target', default='Complete', type=str, help='')
 @click.option('--color/--no-color', default='True', help='add conky color directives to output')
-@click.argument('key', type=str)
-@click.argument('token', type=str)
-def checkBoard(boardid, linefmt, start, end, target, color, key, token):
+def checkBoard(boardid, linefmt, start, end, target, color, keyfile):
     # create arrows
     now = arrow.now()
     astart = now.shift(months=start)
     aend = now.shift(months=end)
+
+    # read key & token
+    kfcont = keyfile.readlines()
+    key = kfcont[0].partition('\n')[0]
+    token = kfcont[1].partition('\n')[0]
 
     # init client and get board
     client = TrelloClient(api_key=key, token=token)
