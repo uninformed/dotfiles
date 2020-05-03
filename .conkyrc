@@ -1,0 +1,124 @@
+--[[
+Conky, a system monitor, based on torsmo
+
+Any original torsmo code is licensed under the BSD license
+
+All code written since the fork of torsmo is licensed under the GPL
+
+Please see COPYING for details
+
+Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+Copyright (c) 2005-2019 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+All rights reserved.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+]]
+
+conky.config = {
+    alignment = 'middle_right',
+    background = false,
+    border_width = 1,
+    cpu_avg_samples = 2,
+    default_outline_color = 'black',
+    default_shade_color = 'black',
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = true,
+    extra_newline = false,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_x = true,
+    show_graph_range = false,
+    show_graph_scale = false,
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+
+	-- *** window color and transparency ***
+    own_window = true,
+	own_window_transparent = true,
+	own_window_argb_visual = true,
+	own_window_argb_value = 00,
+	own_window_color = 'd0d0d0',
+    own_window_class = 'override',
+    own_window_type = 'desktop',
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	-- *** fonts ***	
+    use_xft = true,
+	xftalpha = 1.0,
+    font = 'Liberation Mono:size=12',
+
+	-- *** colors ***
+	default_color = 'f0f0f0',	-- text primary
+	color0 = '98fb98',			-- labels
+	color1 = '50c878',			-- section headers
+	color2 = '01796f',			-- bars
+	color3 = 'f0c878',			-- text secondary
+	color4 = 'white',			-- warning text
+	color5 = 'white',			-- danger text
+	color6 = 'white',			-- unused
+	color7 = 'white',			-- unused
+	color8 = 'white',			-- unused
+	color9 = 'white',			-- unused
+
+	-- *** geometry ***
+--    gap_x = 15,
+    gap_y = 50,
+    minimum_height = 5,
+    minimum_width = 5,
+}
+
+
+conky.text = [[
+$nodename / $sysname $kernel
+
+${color1}System $hr
+${color0}Uptime:$color $uptime
+${color0}CPU:$color $cpu%, $freq_g GHz
+${color0}RAM Usage:$color $mem/$memmax - $memperc% ${color2}${membar 4}
+${color0}Swap Usage:$color $swap/$swapmax - $swapperc% ${color2}${swapbar 4}
+${color0}Networking:
+Up:$color ${upspeed wlan0} ${color grey} - ${color0}Down:$color ${downspeed wlan0}
+
+${color1}Filesystems $hr
+$color0 /              $color${fs_free /} free ${color2}${fs_bar 6 /}
+
+${color1}Processes $hr
+${color0}Name              PID   CPU%   MEM%
+${color} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+${color} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+${color} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+
+# bills script
+${color}${texecpi 60 python /home/asdf/bin/conky_trello.py --target 'Paid' 5e801d8959fc4556667868f6}
+
+# assignments script
+${color}${texecpi 60 python /home/asdf/bin/conky_trello.py --target 'Handed In' 5ea1f48bdaf6ab152df9325d}
+
+# work/todos script
+${color}${texecpi 60 python /home/asdf/bin/conky_trello.py --target 'Complete' 5ea34cfbddd45f2d355deac1}
+
+
+$if_mpd_playing${color1}MPD $hr
+${color0}[$mpd_status] ${color}$mpd_artist - $mpd_title
+${color2}$mpd_bar$endif
+# ${color1}Feeds $hr
+# ${color}DF ${rss http://bay12games.com/dwarves/dev_release.rss 30 item_title 0}
+]]
