@@ -107,13 +107,13 @@ ${color} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
 ${color} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
 
 # bills script
-${color}${texecpi 60 python /home/asdf/bin/conky_trello.py --target 'Paid' 5e801d8959fc4556667868f6}
+${color}${texecpi 60 python /home/asdf/bin/conky_trello.py --target 'Paid' 5e801d8959fc4556667868f6 /home/asdf/.trelloapi}
 
 # assignments script
-${color}${texecpi 60 python /home/asdf/bin/conky_trello.py --target 'Handed In' 5ea1f48bdaf6ab152df9325d}
+${color}${texecpi 60 python /home/asdf/bin/conky_trello.py --target 'Handed In' 5ea1f48bdaf6ab152df9325d /home/asdf/.trelloapi}
 
 # work/todos script
-${color}${texecpi 60 python /home/asdf/bin/conky_trello.py --target 'Complete' 5ea34cfbddd45f2d355deac1}
+${color}${texecpi 60 python /home/asdf/bin/conky_trello.py --target 'Complete' 5ea34cfbddd45f2d355deac1 /home/asdf/.trelloapi}
 
 
 $if_mpd_playing${color1}MPD $hr
