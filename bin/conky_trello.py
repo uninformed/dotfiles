@@ -6,9 +6,6 @@ import arrow
 import click
 from trello import TrelloClient
 
-API_KEY = '2003a2fa86fa6826c692b28c37b15235'
-TOKEN = 'e163d9ff506e8a2192a8ff1acdf3351ee830afd7c4847f28e27c79b2fca29d9c'
-
 def formatLine(card, fmt, color='${color}', width=48):
     '''Format contents of a card into a line of output.
 
@@ -41,14 +38,16 @@ def formatLine(card, fmt, color='${color}', width=48):
 @click.option('--end', '-e', default=1, help='range end offset (months from now)', type=int)
 @click.option('--target', default='Complete', type=str, help='')
 @click.option('--color/--no-color', default='True', help='add conky color directives to output')
-def checkBoard(boardid, linefmt, start, end, target, color):
+@click.argument('key', type=str)
+@click.argument('token', type=str)
+def checkBoard(boardid, linefmt, start, end, target, color, key, token):
     # create arrows
     now = arrow.now()
     astart = now.shift(months=start)
     aend = now.shift(months=end)
 
     # init client and get board
-    client = TrelloClient(api_key=API_KEY, token=TOKEN)
+    client = TrelloClient(api_key=key, token=token)
     board = client.get_board(boardid)
 
     # grab visible (non-archived) cards within the given range
