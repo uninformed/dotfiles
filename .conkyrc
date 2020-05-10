@@ -1,6 +1,4 @@
 --[[
-Conky, a system monitor, based on torsmo
-
 Any original torsmo code is licensed under the BSD license
 
 All code written since the fork of torsmo is licensed under the GPL
@@ -63,7 +61,7 @@ conky.config = {
 	-- *** fonts ***	
     use_xft = true,
 	xftalpha = 1.0,
-    font = 'Liberation Mono:size=12',
+    font = 'Liberation Mono:size=10',
 
 	-- *** colors ***
 	default_color = 'f0f0f0',	-- text primary
